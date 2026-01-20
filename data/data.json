@@ -1,0 +1,17 @@
+{
+  "cameras": [
+    {
+      "id": "mock-1",
+      "name": "Mock Camera 1",
+      "driver": "mock",
+      "host": "mock://camera-1",
+      "username": "",
+      "password": "",
+      "driverConfig": {},
+      "status": "online"
+    }
+  ],
+  "scenes": {
+    "mock-1": []
+  }
+}
