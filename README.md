@@ -1,67 +1,64 @@
-# Multicam PTZ Controller
+# Calculadora de Churrasco Friato
 
-Projeto web para controle de múltiplas câmeras PTZ com persistência local e compatível com o **Custom Browser Dock do OBS**.
-
-## Recursos
-
-- Cadastro de câmeras com driver `MockDriver` ou `GenericHttpDriver`.
-- Controles PTZ (pan/tilt/zoom/focus), stop e velocidades configuráveis.
-- Cenas por câmera, com criação, edição, aplicação e exclusão.
-- Persistência em `data/data.json` no servidor e cache de UX em `localStorage`.
-- Backend em Node.js com Express e endpoints REST simples.
+Aplicação web completa (HTML + CSS + JS + PHP) pronta para embed via iframe, com layout em cards e identidade visual inspirada na paleta Friato.
 
 ## Estrutura
 
 ```
-/server   -> API + drivers + storage
-/client   -> UI (Vite + Bootstrap)
-/data     -> data.json (persistência)
+/public
+  index.html
+  styles.css
+  app.js
+/api
+  calculate.php
+/config
+  rules.json
+/README.md
 ```
 
-## Como rodar
+## Como rodar localmente
+
+> Requer PHP 7.4+.
 
 ```bash
-npm install
-npm run dev
+php -S localhost:8000 -t public
 ```
 
-- Frontend: http://localhost:5173
-- API: http://localhost:3000
+Acesse: http://localhost:8000
 
-### Produção
+## Notas para Apache/XAMPP
 
-```bash
-npm run build
-npm start
+Se você receber **Forbidden** ao acessar a raiz (`/calculadora/`), geralmente é porque o Apache está ignorando `.htaccess` (AllowOverride desativado). Nesse caso:
+
+1. Garanta que o `mod_rewrite` está habilitado.
+2. No `httpd.conf` ou `httpd-vhosts.conf`, defina `AllowOverride All` para a pasta `htdocs`.
+3. Alternativamente, o arquivo `index.php` na raiz já redireciona para `public/` mesmo sem `.htaccess`.
+
+## Exemplo de iframe
+
+```html
+<iframe src="https://meudominio.com/churrasco/public/?theme=light" style="width:100%;height:900px;border:0;"></iframe>
 ```
 
-O servidor vai servir o conteúdo de `client/dist` em `http://localhost:3000`.
+## Parâmetros de URL
 
-## Como usar no OBS
+- `?theme=light|dark`
+- `?primaryColor=%23xxxxxx` (override do vermelho)
+- `?secondaryColor=%23xxxxxx` (override do verde/azulado)
 
-1. No OBS, abra **View > Docks > Custom Browser Docks**.
-2. Adicione um dock apontando para `http://localhost:3000`.
-3. Faça o cadastro de câmeras e use o controle PTZ/cenas normalmente.
+## Como editar regras e catálogo
 
-## Exemplos de templates (GenericHttpDriver)
+Abra `/config/rules.json` para ajustar:
 
-Os templates aceitam variáveis `{{host}}`, `{{username}}`, `{{password}}`, `{{speed}}`.
+- `equivalenteAdulto`: peso de equivalência por perfil.
+- `carnePorEA_g`: gramatura por equivalente adulto.
+- `mixCarnes`: percentual de cada categoria.
+- `kids`: gramaturas por criança.
+- `complementos`: litros/kg/unidades por pessoa.
+- `catalogo`: produtos sugeridos e gramaturas em gramas.
 
-```
-http://{{host}}/cgi-bin/ptz?move=left&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?move=right&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?move=up&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?move=down&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?zoom=tele&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?zoom=wide&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?focus=near&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?focus=far&speed={{speed}}
-http://{{host}}/cgi-bin/ptz?move=stop
-```
+> Dica: ajuste `weight_g` para refletir o pacote real da sua loja.
 
-## Fluxo rápido (testar)
+## Lista de compras
 
-1. Selecione **Mock Camera 1**.
-2. Use os botões de movimento/zoom/foco.
-3. Clique em **Salvar cena atual** e crie cenas como "Pregador" e "Baterista".
-4. Aplique as cenas para enviar os comandos configurados.
+A lista é gerada automaticamente pelo backend (`/api/calculate.php`) e exibida na tela de resultado para copiar, baixar .txt ou imprimir.

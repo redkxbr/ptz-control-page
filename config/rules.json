@@ -1,0 +1,113 @@
+{
+  "_comment": "Edite os valores para ajustar regras e gramaturas. Todos os pesos estão em gramas quando indicado.",
+  "equivalenteAdulto": {
+    "homem": 1.0,
+    "mulher": 0.8,
+    "crianca": 0.0
+  },
+  "perfilPadrao": "medio",
+  "carnePorEA_g": 450,
+  "mixCarnes": {
+    "frango": 0.35,
+    "linguica": 0.25,
+    "suino": 0.2,
+    "bovino": 0.2
+  },
+  "kids": {
+    "friatitosPorCriancaKg": 0.17,
+    "batataPorCriancaKg": 0.1
+  },
+  "complementos": {
+    "cervejaLitrosPorEA": 0.85,
+    "refriLitrosPorPessoa": 0.6,
+    "paoDeAlhoPorPessoa": 1,
+    "carvaoKgPorPessoa": 0.3,
+    "geloKgPorPessoa": 0.2
+  },
+  "catalogo": {
+    "frango": [
+      {
+        "name": "Coxinha da Asa",
+        "sku": "FRI-COX-001",
+        "weight_g": 1000,
+        "unit": "pacote",
+        "notes": "Ajuste a gramatura (weight_g) para refletir o pacote vendido."
+      },
+      {
+        "name": "Coxa e Sobrecoxa",
+        "sku": "FRI-CS-002",
+        "weight_g": 1000,
+        "unit": "pacote"
+      },
+      {
+        "name": "Coração de Frango",
+        "sku": "FRI-COR-003",
+        "weight_g": 800,
+        "unit": "pacote"
+      }
+    ],
+    "linguica": [
+      {
+        "name": "Linguiça Toscana",
+        "sku": "FRI-LIN-010",
+        "weight_g": 800,
+        "unit": "pacote",
+        "notes": "Edite para 1000g se for pacote família."
+      },
+      {
+        "name": "Linguiça Calabresa",
+        "sku": "FRI-LIN-011",
+        "weight_g": 700,
+        "unit": "pacote"
+      }
+    ],
+    "suino": [
+      {
+        "name": "Costelinha Suína",
+        "sku": "FRI-SUI-020",
+        "weight_g": 1200,
+        "unit": "pacote"
+      }
+    ],
+    "bovino": [
+      {
+        "name": "Opcional (açougue)",
+        "sku": "",
+        "weight_g": 1000,
+        "unit": "kg",
+        "notes": "Se não houver produto bovino no catálogo, sugerir compra no açougue."
+      }
+    ],
+    "kids_friatitos": [
+      {
+        "name": "Friatitos",
+        "sku": "FRI-KID-100",
+        "weight_g": 400,
+        "unit": "pacote"
+      },
+      {
+        "name": "Big Friatitos",
+        "sku": "FRI-KID-101",
+        "weight_g": 800,
+        "unit": "pacote"
+      }
+    ],
+    "kids_batata": [
+      {
+        "name": "Batata Palito",
+        "sku": "FRI-BAT-200",
+        "weight_g": 1000,
+        "unit": "pacote"
+      }
+    ],
+    "pao_de_alho": [
+      {
+        "name": "Pão de Alho",
+        "sku": "FRI-PAO-300",
+        "weight_g": 80,
+        "unit": "un",
+        "notes": "Unidade média; ajuste se preferir pão menor/maior."
+      }
+    ]
+  }
+}
