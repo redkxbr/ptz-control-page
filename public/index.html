@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Churrasco Friato</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" aria-live="polite">
+    <header class="hero">
+      <span class="badge">Friato</span>
+      <h1>Calculadora de churrasco</h1>
+      <p>Calcule a quantidade de convidados</p>
+    </header>
+
+    <section id="screen-input" class="screen screen--active" aria-labelledby="screen-input-title">
+      <h2 id="screen-input-title" class="sr-only">Entrada de convidados</h2>
+      <div class="card-grid">
+        <article class="card" data-person="homens">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🥩</span>
+            <div>
+              <h3>Homens</h3>
+              <p>Adultos equivalentes 1.0</p>
+            </div>
+          </div>
+          <div class="card__body">
+            <label for="homens">Quantidade de homens</label>
+            <div class="input-group">
+              <button type="button" class="icon-btn" data-action="decrease" aria-label="Diminuir homens">-</button>
+              <input id="homens" name="homens" type="number" min="0" inputmode="numeric" placeholder="Digite" value="0" />
+              <button type="button" class="icon-btn" data-action="increase" aria-label="Aumentar homens">+</button>
+            </div>
+          </div>
+          <div class="card__footer">Entrada principal</div>
+        </article>
+
+        <article class="card" data-person="mulheres">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🍗</span>
+            <div>
+              <h3>Mulheres</h3>
+              <p>Adultos equivalentes 0.8</p>
+            </div>
+          </div>
+          <div class="card__body">
+            <label for="mulheres">Quantidade de mulheres</label>
+            <div class="input-group">
+              <button type="button" class="icon-btn" data-action="decrease" aria-label="Diminuir mulheres">-</button>
+              <input id="mulheres" name="mulheres" type="number" min="0" inputmode="numeric" placeholder="Digite" value="0" />
+              <button type="button" class="icon-btn" data-action="increase" aria-label="Aumentar mulheres">+</button>
+            </div>
+          </div>
+          <div class="card__footer">Entrada principal</div>
+        </article>
+
+        <article class="card" data-person="criancas">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🧒</span>
+            <div>
+              <h3>Crianças</h3>
+              <p>Kids separados</p>
+            </div>
+          </div>
+          <div class="card__body">
+            <label for="criancas">Quantidade de crianças</label>
+            <div class="input-group">
+              <button type="button" class="icon-btn" data-action="decrease" aria-label="Diminuir crianças">-</button>
+              <input id="criancas" name="criancas" type="number" min="0" inputmode="numeric" placeholder="Digite" value="0" />
+              <button type="button" class="icon-btn" data-action="increase" aria-label="Aumentar crianças">+</button>
+            </div>
+          </div>
+          <div class="card__footer">Kids Friatitos</div>
+        </article>
+      </div>
+
+      <div class="cta">
+        <button id="calculate" class="primary-btn" type="button">ENVIAR</button>
+        <p id="error" class="error" role="alert" aria-live="assertive"></p>
+      </div>
+    </section>
+
+    <section id="screen-result" class="screen" aria-labelledby="screen-result-title">
+      <div class="screen__header">
+        <div>
+          <h2 id="screen-result-title">Resultado</h2>
+          <p class="muted">Resumo do churrasco Friato</p>
+        </div>
+        <button id="recalculate-top" class="ghost-btn" type="button">Refazer cálculo</button>
+      </div>
+
+      <div class="result-grid">
+        <article class="card" id="resumo-card">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">📊</span>
+            <div>
+              <h3>Resumo</h3>
+              <p>Convidados e equivalentes</p>
+            </div>
+          </div>
+          <div class="card__body" id="resumo-content"></div>
+          <div class="card__footer">Tudo sob controle</div>
+        </article>
+
+        <article class="card" id="carnes-card">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🥩</span>
+            <div>
+              <h3>Lista de carnes</h3>
+              <p>Mix para adultos</p>
+            </div>
+          </div>
+          <div class="card__body" id="carnes-content"></div>
+          <div class="card__footer">Adultos</div>
+        </article>
+
+        <article class="card" id="kids-card">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🎈</span>
+            <div>
+              <h3>Para a criançada</h3>
+              <p>Friatitos + batata</p>
+            </div>
+          </div>
+          <div class="card__body" id="kids-content"></div>
+          <div class="card__footer">Kids Friato</div>
+        </article>
+
+        <article class="card" id="complementos-card">
+          <div class="card__header">
+            <span class="card__icon" aria-hidden="true">🥤</span>
+            <div>
+              <h3>Para complementar</h3>
+              <p>Bebidas e extras</p>
+            </div>
+          </div>
+          <div class="card__body" id="complementos-content"></div>
+          <div class="card__footer">Itens extras</div>
+        </article>
+      </div>
+
+      <article class="card card--wide" id="lista-card">
+        <div class="card__header">
+          <span class="card__icon" aria-hidden="true">📝</span>
+          <div>
+            <h3>Lista de compras</h3>
+            <p>Copiável e pronta para compartilhar</p>
+          </div>
+        </div>
+        <div class="card__body">
+          <textarea id="shopping-list" readonly rows="14"></textarea>
+          <div class="action-row">
+            <button id="copy-list" class="primary-btn" type="button">Copiar lista</button>
+            <button id="download-list" class="ghost-btn" type="button">Baixar .txt</button>
+            <button id="print-list" class="ghost-btn" type="button">Imprimir</button>
+            <button id="recalculate" class="ghost-btn" type="button">Refazer cálculo</button>
+          </div>
+          <p id="copy-feedback" class="muted"></p>
+        </div>
+        <div class="card__footer">Friato recomendado</div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
