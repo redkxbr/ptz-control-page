@@ -26,6 +26,14 @@ php -S localhost:8000 -t public
 
 Acesse: http://localhost:8000
 
+## Notas para Apache/XAMPP
+
+Se você receber **Forbidden** ao acessar a raiz (`/calculadora/`), geralmente é porque o Apache está ignorando `.htaccess` (AllowOverride desativado). Nesse caso:
+
+1. Garanta que o `mod_rewrite` está habilitado.
+2. No `httpd.conf` ou `httpd-vhosts.conf`, defina `AllowOverride All` para a pasta `htdocs`.
+3. Alternativamente, o arquivo `index.php` na raiz já redireciona para `public/` mesmo sem `.htaccess`.
+
 ## Exemplo de iframe
 
 ```html

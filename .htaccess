@@ -1,6 +1,6 @@
 Options -Indexes
 
-DirectoryIndex public/index.html
+DirectoryIndex index.php public/index.html
 
 RewriteEngine On
 RewriteRule ^$ public/ [L]
